@@ -3,103 +3,175 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Career Quiz</title>
+    <title>Career Choice Game</title>
     <style>
-        /* Your styles here */
+        @import url('https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;700&display=swap');
+        
+        body {
+            font-family: 'Sarabun', sans-serif;
+            text-align: center;
+            background: linear-gradient(to bottom, #FF0000, #d3d3d3); /* เปลี่ยนสีพื้นหลัง */
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .choice-btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 18px;
+            border: none;
+            background: #800000; /* ปุ่มสีแดงเลือดหมู */
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .choice-btn:hover {
+            background: #5b0000;
+        }
+        img {
+            max-width: 80%;  /* ปรับขนาดรูปให้พอดีกับหน้าจอ */
+            height: auto;    /* รักษาสัดส่วนของรูป */
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        .skills-box {
+            margin-top: 20px;
+            padding: 10px;
+            background: #f8f8f8;
+            border-radius: 5px;
+        }
+        .intro-container {
+            text-align: center;
+            padding: 40px 20px;
+        }
+        .intro-container img {
+            max-width: 80%;  /* ปรับขนาดรูปในหน้าแรกให้พอดีกับหน้าจอ */
+            margin-bottom: 30px;
+        }
     </style>
 </head>
 <body>
 
-    <div id="intro-page">
-        <h1>Welcome to the Career Quiz</h1>
-        <button onclick="startTest()">Start Test</button>
+    <!-- หน้าแรก -->
+    <div class="intro-container" id="intro-page">
+        <img src="channels4_profile (1).jpg" alt="Career Image">
+        <h1>ค้นหาอาชีพที่เหมาะกับเรา</h1>
+        <button class="choice-btn" onclick="startTest()">เริ่มทดสอบกันเลย!</button>
     </div>
 
-    <div id="question-page" style="display: none;">
-        <p id="question"></p>
-        <img id="question-image" alt="Question Image">
-        <div id="choices"></div>
+    <!-- คำถาม -->
+    <div class="container" id="question-page" style="display: none;">
+        <img id="question-image" src="" alt="Question Image">
+        <h1 id="question">Loading...</h1>
+        <div id="choices"></div> <!-- เปลี่ยนเป็น div สำหรับแสดงตัวเลือก -->
+        <div class="skills-box" id="skills"></div>
     </div>
 
-    <div id="result-page" style="display: none;">
-        <p id="career-result"></p>
-        <p id="result-skills"></p>
-        <button onclick="restartTest()">Restart Test</button>
+    <!-- ผลลัพธ์ -->
+    <div class="container" id="result-page" style="display: none;">
+        <img id="result-image" src="" alt="Result Image">
+        <h1 id="career-result">Loading...</h1>
+        <div id="result-skills"></div>
+        <button class="choice-btn" onclick="restartTest()">เล่นอีกรอบ</button>
     </div>
 
     <script>
-        let currentQuestion = 0;
-        let totalScore = [0, 0, 0, 0, 0, 0, 0, 0];
-
         const questions = [
             { 
-                text: "Question 1?", 
-                image: "your_image_1.png",
-                choices: ["Choice A", "Choice B", "Choice C", "Choice D"],
-                results: [
-                    [4, 2, 1, 1, 3, 1, 1, 3], 
-                    [2, 4, 3, 1, 1, 2, 2, 2],
-                    [1, 1, 1, 2, 4, 3, 1, 1],
-                    [1, 1, 2, 4, 1, 2, 3, 1]
-                ]
+                text: "คุณชอบทำงานกับข้อมูลและตัวเลขหรือไม่?", 
+                image: "job_suugakusya.png", 
+                choices: ["มาก", "กลางๆ", "ไม่เลย"],
+                results: [3, 2, 1]
             },
-            // Add more questions as needed
+            { 
+                text: "คุณชอบการออกแบบและศิลปะหรือไม่?", 
+                image: "mangaka_man.png",
+                choices: ["มาก", "กลางๆ", "ไม่เลย"],
+                results: [3, 2, 1]
+            },
+            { 
+                text: "คุณสนใจเทคโนโลยีและการเขียนโปรแกรมหรือไม่?", 
+                image: "computer_programming_man.png",
+                choices: ["มาก", "กลางๆ", "ไม่เลย"],
+                results: [3, 2, 1]
+            },
+            { 
+                text: "คุณถนัดการสื่อสารและการพูดในที่สาธารณะหรือไม่?", 
+                image: "job_reporter_woman_smile.png",
+                choices: ["มาก", "กลางๆ", "ไม่เลย"],
+                results: [3, 2, 1]
+            },
+            { 
+                text: "คุณสนใจงานที่เกี่ยวกับการตลาดและการวิเคราะห์พฤติกรรมผู้บริโภคหรือไม่?", 
+                image: "gourmet_writer_man.png",
+                choices: ["มาก", "กลางๆ", "ไม่เลย"],
+                results: [3, 2, 1]
+            }
         ];
+
+        let currentQuestion = 0;
+        let totalScore = 0;  // คะแนนรวม
 
         function startTest() {
             document.getElementById("intro-page").style.display = "none";
-            showQuestion();
+            document.getElementById("question-page").style.display = "block";
+            updateQuestion();
         }
 
-        function showQuestion() {
-            const question = questions[currentQuestion];
-            document.getElementById("question").innerText = question.text;
-            document.getElementById("question-image").src = question.image;
-            let choicesHTML = '';
-            for (let i = 0; i < question.choices.length; i++) {
-                choicesHTML += `<button class="choice-btn" onclick="answerQuestion(${i})">${question.choices[i]}</button>`;
-            }
-            document.getElementById("choices").innerHTML = choicesHTML;
-        }
+        function nextQuestion(choiceIndex) {
+            totalScore += questions[currentQuestion].results[choiceIndex];
 
-        function answerQuestion(choiceIndex) {
-            const question = questions[currentQuestion];
-            const scores = question.results[choiceIndex];
-            for (let i = 0; i < totalScore.length; i++) {
-                totalScore[i] += scores[i];
-            }
-            currentQuestion++;
-            if (currentQuestion < questions.length) {
-                showQuestion();
+            if (currentQuestion < questions.length - 1) {
+                currentQuestion++;
+                updateQuestion();
             } else {
                 showResult();
             }
         }
 
-        function showResult() {
-            let maxScoreIndex = 0;
-            for (let i = 1; i < totalScore.length; i++) {
-                if (totalScore[i] > totalScore[maxScoreIndex]) {
-                    maxScoreIndex = i;
-                }
-            }
+        function updateQuestion() {
+            document.getElementById("question").innerText = questions[currentQuestion].text;
+            document.getElementById("question-image").src = questions[currentQuestion].image;
+            const choicesDiv = document.getElementById("choices");
 
+            choicesDiv.innerHTML = '';
+
+            for (let i = 0; i < questions[currentQuestion].choices.length; i++) {
+                const button = document.createElement('button');
+                button.classList.add('choice-btn');
+                button.innerText = questions[currentQuestion].choices[i];
+                button.onclick = () => nextQuestion(i);
+                choicesDiv.appendChild(button);
+            }
+        }
+
+        function showResult() {
             let career = "";
             let skills = "";
 
-            switch (maxScoreIndex) {
-                case 0:
-                    career = "You are best suited for Public Relations!";
-                    skills = "<strong>Skills needed:</strong> Communication, Writing, Project Management";
-                    break;
-                case 1:
-                    career = "You are best suited for Advertising and Brand Communications!";
-                    skills = "<strong>Skills needed:</strong> Graphic Design, Creativity, Marketing";
-                    break;
-                // Add other cases as needed
+            if (totalScore >= 12) {
+                career = "คุณเหมาะกับอาชีพ... Digital Marketer!";
+                skills = "<strong>ทักษะที่ควรมี:</strong> การวิเคราะห์ข้อมูล, การเขียนเนื้อหา, การใช้เครื่องมือโฆษณาออนไลน์";
+            } else if (totalScore >= 8) {
+                career = "คุณเหมาะกับอาชีพ... นักออกแบบกราฟิก!";
+                skills = "<strong>ทักษะที่ควรมี:</strong> การออกแบบ, การใช้โปรแกรมกราฟิก, ความคิดสร้างสรรค์";
+            } else {
+                career = "คุณเหมาะกับอาชีพ... นักพัฒนาโปรแกรม!";
+                skills = "<strong>ทักษะที่ควรมี:</strong> การเขียนโปรแกรม, การแก้ปัญหา, ความสามารถในการคิดเชิงตรรกะ";
             }
 
             document.getElementById("career-result").innerText = career;
+            document.getElementById("result-image").src = "channels4_profile (1).jpg";
             document.getElementById("result-skills").innerHTML = skills;
             document.getElementById("question-page").style.display = "none";
             document.getElementById("result-page").style.display = "block";
@@ -107,11 +179,10 @@
 
         function restartTest() {
             currentQuestion = 0;
-            totalScore = [0, 0, 0, 0, 0, 0, 0, 0];
+            totalScore = 0;
             document.getElementById("result-page").style.display = "none";
             document.getElementById("intro-page").style.display = "block";
         }
     </script>
-
 </body>
 </html>
