@@ -86,270 +86,201 @@
     </div>
 
     <script>
-const questions = [ 
-  	  { 
-        text: "คุณชอบทำงานแบบไหนมากที่สุด?", 
-        image: "your_image_1.png", 
-        choices: [
-            "A) วางแผนกลยุทธ์และดูแลภาพลักษณ์องค์กร", 
-            "B) คิดไอเดียสร้างสรรค์และออกแบบ", 
-            "C) ชอบพูดคุย พิธีกร หรือแสดงออก", 
-            "D) ค้นหาข้อมูล วิเคราะห์ และเล่าเรื่องจริง"
-        ],
-        results: [
-            [4, 2, 1, 1, 2, 1, 1, 3], // Scores for PR, ADV, MD, JNM, SPC, PA, FSP, CM
-            [2, 4, 3, 1, 1, 1, 2, 2],
-            [1, 1, 1, 2, 4, 3, 1, 1],
-            [1, 1, 2, 4, 1, 2, 3, 1]
-        ]
-    },
-    { 
-        text: "ถ้าให้เลือกเรียนคอร์สพิเศษสักคอร์สหนึ่ง คุณจะเลือกอะไร?", 
-        image: "your_image_2.png",
-        choices: [
-            "A) กลยุทธ์การประชาสัมพันธ์และการสร้างภาพลักษณ์", 
-            "B) การสร้างโฆษณาและการออกแบบสื่อดิจิทัล", 
-            "C) ศิลปะการพูด พิธีกร หรือการแสดง", 
-            "D) การเขียนข่าวสารและสื่อดิจิทัล"
-        ],
-        results: [
-            [4, 2, 1, 1, 3, 1, 1, 3], 
-            [1, 4, 3, 1, 1, 1, 2, 2],
-            [1, 1, 1, 2, 4, 3, 1, 1],
-            [1, 1, 2, 4, 1, 2, 3, 1]
-        ]
-    },
-    { 
-        text: "คุณถนัดด้านไหนมากที่สุด?", 
-        image: "your_image_3.png",
-        choices: [
-            "A) วางแผน ติดต่อประสานงานกับคน", 
-            "B) ใช้โปรแกรมออกแบบ วาดรูป ตัดต่อวิดีโอ", 
-            "C) พูดต่อหน้าคนจำนวนมากหรือแสดงออกทางร่างกาย", 
-            "D) เขียนข่าว บทความ หรือเล่าเรื่องจากมุมมองใหม่"
-        ],
-        results: [
-            [4, 2, 1, 1, 3, 1, 1, 3], 
-            [2, 4, 3, 1, 1, 1, 2, 2],
-            [1, 1, 1, 2, 4, 3, 1, 1],
-            [1, 1, 2, 4, 1, 2, 3, 1]
-        ]
-    },
-    { 
-        text: "เวลาว่างคุณชอบทำอะไร?", 
-        image: "your_image_4.png",
-        choices: [
-            "A) อ่านข่าวสาร อัปเดตเทรนด์สังคมและธุรกิจ", 
-            "B) ดูโฆษณา กราฟิก หรือออกแบบภาพเอง", 
-            "C) ฝึกพูด พิธีกร หรือซ้อมแสดง", 
-            "D) เขียนไดอารี่หรือรีวิวสิ่งต่าง ๆ"
-        ],
-        results: [
-            [4, 2, 1, 3, 2, 1, 1, 3], 
-            [1, 4, 3, 1, 1, 1, 2, 2],
-            [1, 1, 1, 2, 4, 3, 1, 1],
-            [1, 1, 2, 4, 1, 2, 3, 1]
-        ]
-    },
-    { 
-        text: "เมื่อเจองานที่ต้องแก้ปัญหา คุณเลือกวิธีไหน?", 
-        image: "your_image_5.png",
-        choices: [
-            "A) วางแผนกลยุทธ์และวิเคราะห์ปัญหาเป็นขั้นตอน", 
-            "B) ใช้ความคิดสร้างสรรค์เพื่อแก้ไขปัญหา", 
-            "C) สื่อสารและประสานงานกับคนในทีมให้ช่วยกันแก้ปัญหา", 
-            "D) ศึกษาหาข้อมูลและทดลองหาทางแก้จากแหล่งต่าง ๆ"
-        ],
-        results: [
-            [4, 2, 1, 1, 3, 1, 1, 3], 
-            [1, 4, 3, 1, 1, 2, 2, 2],
-            [2, 1, 1, 2, 4, 3, 1, 1],
-            [1, 1, 2, 4, 1, 2, 3, 1]
-        ]
-    },
-    { 
-        text: "คุณอยากฝึกทักษะใดมากที่สุด?", 
-        image: "your_image_6.png",
-        choices: [
-            "A) การบริหารโครงการและการสื่อสารองค์กร", 
-            "B) การออกแบบกราฟิกและสื่อโฆษณา", 
-            "C) ศิลปะการพูด การแสดง และการโน้มน้าวใจ", 
-            "D) ทักษะการเขียน การวิเคราะห์ และการนำเสนอข้อมูล"
-        ],
-        results: [
-            [4, 2, 1, 1, 3, 1, 1, 3], 
-            [1, 4, 3, 1, 1, 1, 2, 2],
-            [1, 1, 1, 2, 4, 3, 1, 1],
-            [1, 1, 2, 4, 1, 2, 3, 1]
-        ]
-    },
-    { 
-        text: "คุณชอบทำงานเป็นทีม หรือทำงานเดี่ยวมากกว่ากัน?", 
-        image: "your_image_7.png",
-        choices: [
-            "A) ทำงานเป็นทีม วางแผนและสื่อสารกับผู้อื่น", 
-            "B) ทำงานคนเดียว คิดไอเดียและสร้างสรรค์ผลงาน", 
-            "C) ทำงานที่ต้องใช้การพูดหรือแสดงออก", 
-            "D) ทำงานที่ต้องหาข้อมูลและนำเสนอ"
-        ],
-        results: [
-            [4, 2, 1, 1, 3, 1, 1, 3], 
-            [1, 4, 3, 1, 1, 2, 2, 2],
-            [1, 1, 1, 2, 4, 3, 1, 1],
-            [1, 1, 2, 4, 1, 2, 3, 1]
-        ]
-    },
-    { 
-        text: "คุณอยากทำงานในสภาพแวดล้อมแบบไหน?", 
-        image: "your_image_8.png",
-        choices: [
-            "A) ออฟฟิศ มีการวางแผนชัดเจน", 
-            "B) สตูดิโอหรือพื้นที่สร้างสรรค์", 
-            "C) เวที สถานที่ถ่ายทำ หรือหน้ากล้อง", 
-            "D) นอกสถานที่ หรือเดินทางไปค้นคว้าหาข้อมูล"
-        ],
-        results: [
-            [4, 2, 1, 1, 3, 1, 1, 3], 
-            [1, 4, 3, 1, 1, 2, 2, 2],
-            [1, 1, 1, 2, 4, 3, 1, 1],
-            [1, 1, 2, 4, 1, 2, 3, 1]
-        ]
-    }
-];
-
-let currentQuestion = 0;
-let totalScore = [0, 0, 0, 0, 0, 0, 0, 0];  // Separate score array for each major
-
-function startTest() {
-    document.getElementById("intro-page").style.display = "none";
-    document.getElementById("question-page").style.display = "block";
-    updateQuestion();
-}
-
-function nextQuestion(choiceIndex) {
-    // Add the score from the selected choice to the corresponding major
-    for (let i = 0; i < totalScore.length; i++) {
-        totalScore[i] += questions[currentQuestion].results[choiceIndex][i];
-    }
-
-    if (currentQuestion < questions.length - 1) {
-        currentQuestion++;
-        updateQuestion();
-    } else {
-        showResult();
-    }
-}
-
-function updateQuestion() {
-    document.getElementById("question").innerText = questions[currentQuestion].text;
-    document.getElementById("question-image").src = questions[currentQuestion].image;
-    const choicesDiv = document.getElementById("choices");
-
-    choicesDiv.innerHTML = '';
-
-    for (let i = 0; i < questions[currentQuestion].choices.length; i++) {
-        const button = document.createElement('button');
-        button.classList.add('choice-btn');
-        button.innerText = questions[currentQuestion].choices[i];
-        button.onclick = () => nextQuestion(i);
-        choicesDiv.appendChild(button);
-    }
-}
-
-function showResult() {
-    let career = "";
-    let skills = "";
-
-    // Determine the major based on the highest score
-    const maxScoreIndex = totalScore.indexOf(Math.max(...totalScore));
-
-    switch (maxScoreIndex) {
-        case 0:
-            career = "คุณเหมาะกับอาชีพ... Public Relations (PR)!";
-            skills = "<strong>ทักษะที่ควรมี:</strong> การสื่อสาร, การบริหารโครงการ, ความคิดสร้างสรรค์";
-            break;
-        case 1:
-            career = "คุณเหมาะกับอาชีพ... Advertising and Brand Communications (ADV)!";
-            skills = "<strong>ทักษะที่ควรมี:</strong> การออกแบบกราฟิก, การใช้โปรแกรมกราฟิก, ความคิดสร้างสรรค์";
-            break;
-        case 2:
-            career = "คุณเหมาะกับอาชีพ... Media Design and Production (MD)!";
-            skills = "<strong>ทักษะที่ควรมี:</strong> การออกแบบ, การตัดต่อวิดีโอ, ความคิดสร้างสรรค์";
-            break;
- case 3:
-        majorRecommendation = "คุณเหมาะกับสาขา... Journalism, Information, and New Media";
-        career = "อาชีพที่คุณสามารถทำได้: Journalist, Content Writer, Digital Media Specialist";
-        skills = "<strong>ทักษะที่ควรมี:</strong> การเขียน, การวิเคราะห์ข่าวสาร, การทำงานกับข้อมูล";
-        break;
-    case 4:
-        majorRecommendation = "คุณเหมาะกับสาขา... Speech Communication";
-        career = "อาชีพที่คุณสามารถทำได้: Public Speaker, Communication Consultant, Corporate Trainer";
-        skills = "<strong>ทักษะที่ควรมี:</strong> การพูด, การโน้มน้าว, การสื่อสารระหว่างบุคคล";
-        break;
-    case 5:
-        majorRecommendation = "คุณเหมาะกับสาขา... Performing Arts";
-        career = "อาชีพที่คุณสามารถทำได้: Actor, Stage Director, Performing Arts Manager";
-        skills = "<strong>ทักษะที่ควรมี:</strong> การแสดง, การสื่อสารผ่านการแสดง, ความคิดสร้างสรรค์";
-        break;
-    case 6:
-        majorRecommendation = "คุณเหมาะกับสาขา... Film and Still Photography";
-        career = "อาชีพที่คุณสามารถทำได้: Photographer, Film Director, Cinematographer";
-        skills = "<strong>ทักษะที่ควรมี:</strong> การถ่ายภาพ, การตัดต่อ, การใช้เทคโนโลยีในการสร้างภาพ";
-        break;
-    case 7:
-        majorRecommendation = "คุณเหมาะกับสาขา... Communication Management (International)";
-        career = "อาชีพที่คุณสามารถทำได้: International PR Manager, Communication Strategist, Marketing Manager";
-        skills = "<strong>ทักษะที่ควรมี:</strong> การบริหารจัดการ, การสื่อสารทางธุรกิจ, ความเข้าใจในตลาดระหว่างประเทศ";
-        break;
-    default:
-        majorRecommendation = "ไม่สามารถกำหนดสาขาได้จากคำตอบที่เลือก";
-        career = "";
-        skills = "";
-        break;
-}
-
-// แสดงผลบนหน้าเว็บ
-document.getElementById('majorRecommendation').innerHTML = majorRecommendation;
-document.getElementById('career').innerHTML = career;
-document.getElementById('skills').innerHTML = skills;
-       
+        const questions = [ 
+            { 
+                text: "คุณชอบทำงานแบบไหนมากที่สุด?", 
+                image: "your_image_1.png", 
+                choices: [
+                    "A) วางแผนกลยุทธ์และดูแลภาพลักษณ์องค์กร", 
+                    "B) คิดไอเดียสร้างสรรค์และออกแบบ", 
+                    "C) ชอบพูดคุย พิธีกร หรือแสดงออก", 
+                    "D) ค้นหาข้อมูล วิเคราะห์ และเล่าเรื่องจริง"
+                ],
+                results: [
+                    [4, 2, 1, 1, 2, 1, 1, 3], // Scores for PR, ADV, MD, JNM, SPC, PA, FSP, CM
+                    [2, 4, 3, 1, 1, 1, 2, 2],
+                    [1, 1, 1, 2, 4, 3, 1, 1],
+                    [1, 1, 2, 4, 1, 2, 3, 1]
+                ]
+            },
+            { 
+                text: "ถ้าให้เลือกเรียนคอร์สพิเศษสักคอร์สหนึ่ง คุณจะเลือกอะไร?", 
+                image: "your_image_2.png",
+                choices: [
+                    "A) กลยุทธ์การประชาสัมพันธ์และการสร้างภาพลักษณ์", 
+                    "B) การสร้างโฆษณาและการออกแบบสื่อดิจิทัล", 
+                    "C) ศิลปะการพูด พิธีกร หรือการแสดง", 
+                    "D) การเขียนข่าวสารและสื่อดิจิทัล"
+                ],
+                results: [
+                    [4, 2, 1, 1, 3, 1, 1, 3], 
+                    [1, 4, 3, 1, 1, 1, 2, 2],
+                    [1, 1, 1, 2, 4, 3, 1, 1],
+                    [1, 1, 2, 4, 1, 2, 3, 1]
+                ]
+            },
+            { 
+                text: "คุณถนัดด้านไหนมากที่สุด?", 
+                image: "your_image_3.png",
+                choices: [
+                    "A) วางแผน ติดต่อประสานงานกับคน", 
+                    "B) ใช้โปรแกรมออกแบบ วาดรูป ตัดต่อวิดีโอ", 
+                    "C) พูดต่อหน้าคนจำนวนมากหรือแสดงออกทางร่างกาย", 
+                    "D) เขียนข่าว บทความ หรือเล่าเรื่องจากมุมมองใหม่"
+                ],
+                results: [
+                    [4, 2, 1, 1, 3, 1, 1, 3], 
+                    [2, 4, 3, 1, 1, 1, 2, 2],
+                    [1, 1, 1, 2, 4, 3, 1, 1],
+                    [1, 1, 2, 4, 1, 2, 3, 1]
+                ]
+            },
+            { 
+                text: "เวลาว่างคุณชอบทำอะไร?", 
+                image: "your_image_4.png",
+                choices: [
+                    "A) อ่านข่าวสาร อัปเดตเทรนด์สังคมและธุรกิจ", 
+                    "B) ดูโฆษณา กราฟิก หรือออกแบบภาพเอง", 
+                    "C) ฝึกพูด พิธีกร หรือซ้อมแสดง", 
+                    "D) เขียนไดอารี่หรือรีวิวสิ่งต่าง ๆ"
+                ],
+                results: [
+                    [4, 2, 1, 3, 2, 1, 1, 3], 
+                    [1, 4, 3, 1, 1, 1, 2, 2],
+                    [1, 1, 1, 2, 4, 3, 1, 1],
+                    [1, 1, 2, 4, 1, 2, 3, 1]
+                ]
+            },
+            { 
+                text: "เมื่อเจองานที่ต้องแก้ปัญหา คุณเลือกวิธีไหน?", 
+                image: "your_image_5.png",
+                choices: [
+                    "A) วางแผนกลยุทธ์และวิเคราะห์ปัญหาเป็นขั้นตอน", 
+                    "B) ใช้ความคิดสร้างสรรค์เพื่อแก้ไขปัญหา", 
+                    "C) สื่อสารและประสานงานกับคนในทีมให้ช่วยกันแก้ปัญหา", 
+                    "D) ศึกษาหาข้อมูลและทดลองหาทางแก้จากแหล่งต่าง ๆ"
+                ],
+                results: [
+                    [4, 2, 1, 1, 3, 1, 1, 3], 
+                    [1, 4, 3, 1, 1, 2, 2, 2],
+                    [2, 1, 1, 2, 4, 3, 1, 1],
+                    [1, 1, 2, 4, 1, 2, 3, 1]
+                ]
+            },
+            { 
+                text: "คุณอยากฝึกทักษะใดมากที่สุด?", 
+                image: "your_image_6.png",
+                choices: [
+                    "A) การบริหารโครงการและการสื่อสารองค์กร", 
+                    "B) การออกแบบกราฟิกและสื่อโฆษณา", 
+                    "C) ศิลปะการพูด การแสดง และการโน้มน้าวใจ", 
+                    "D) ทักษะการเขียนข่าวและการทำงานกับสื่อดิจิทัล"
+                ],
+                results: [
+                    [4, 2, 1, 1, 3, 1, 1, 3], 
+                    [2, 4, 3, 1, 1, 2, 2, 2],
+                    [1, 1, 1, 2, 4, 3, 1, 1],
+                    [1, 1, 2, 4, 1, 2, 3, 1]
+                ]
+            },
+            { 
+                text: "คำถามสุดท้าย! คุณคิดว่าอาชีพไหนที่คุณสามารถทำได้ดีที่สุด?", 
+                image: "your_image_7.png",
+                choices: [
+                    "A) พัฒนากลยุทธ์ประชาสัมพันธ์และการสร้างภาพลักษณ์", 
+                    "B) การออกแบบสื่อโฆษณาและการผลิตกราฟิก", 
+                    "C) การพูด การแสดง หรือการเป็นพิธีกร", 
+                    "D) การเขียนข่าวสาร การเล่าเรื่อง และการรายงานข่าว"
+                ],
+                results: [
+                    [4, 2, 1, 1, 3, 1, 1, 3], 
+                    [1, 4, 3, 1, 1, 2, 2, 2],
+                    [2, 1, 1, 2, 4, 3, 1, 1],
+                    [1, 1, 2, 4, 1, 2, 3, 1]
+                ]
+            }
+        ];
+        
+        let currentQuestion = 0;
+        let totalScore = [0, 0, 0, 0, 0, 0, 0, 0]; // สร้างคะแนนเริ่มต้น
 
         function startTest() {
             document.getElementById("intro-page").style.display = "none";
-            document.getElementById("question-page").style.display = "block";
-            updateQuestion();
+            showQuestion();
         }
 
-        function nextQuestion(choiceIndex) {
-            totalScore += questions[currentQuestion].results[choiceIndex];
+        function showQuestion() {
+            const question = questions[currentQuestion];
+            document.getElementById("question").innerText = question.text;
+            document.getElementById("question-image").src = question.image;
+            let choicesHTML = '';
+            for (let i = 0; i < question.choices.length; i++) {
+                choicesHTML += `<button class="choice-btn" onclick="answerQuestion(${i})">${question.choices[i]}</button>`;
+            }
+            document.getElementById("choices").innerHTML = choicesHTML;
+        }
 
-            if (currentQuestion < questions.length - 1) {
-                currentQuestion++;
-                updateQuestion();
+        function answerQuestion(choiceIndex) {
+            const question = questions[currentQuestion];
+            const scores = question.results[choiceIndex];
+            for (let i = 0; i < totalScore.length; i++) {
+                totalScore[i] += scores[i];
+            }
+            currentQuestion++;
+            if (currentQuestion < questions.length) {
+                showQuestion();
             } else {
                 showResult();
             }
         }
 
-        function updateQuestion() {
-            document.getElementById("question").innerText = questions[currentQuestion].text;
-            document.getElementById("question-image").src = questions[currentQuestion].image;
-            const choicesDiv = document.getElementById("choices");
-
-            choicesDiv.innerHTML = '';
-
-            for (let i = 0; i < questions[currentQuestion].choices.length; i++) {
-                const button = document.createElement('button');
-                button.classList.add('choice-btn');
-                button.innerText = questions[currentQuestion].choices[i];
-                button.onclick = () => nextQuestion(i);
-                choicesDiv.appendChild(button);
+        function showResult() {
+            let maxScoreIndex = 0;
+            for (let i = 1; i < totalScore.length; i++) {
+                if (totalScore[i] > totalScore[maxScoreIndex]) {
+                    maxScoreIndex = i;
+                }
             }
-        }
+
+            let career = "";
+            let skills = "";
+
+            switch (maxScoreIndex) {
+                case 0:
+                    career = "คุณเหมาะกับอาชีพ... Public Relations!";
+                    skills = "<strong>ทักษะที่ควรมี:</strong> การสื่อสาร, การเขียนข่าว, การจัดการโครงการ";
+                    break;
+                case 1:
+                    career = "คุณเหมาะกับอาชีพ... Advertising and Brand Communications!";
+                    skills = "<strong>ทักษะที่ควรมี:</strong> การออกแบบกราฟิก, การคิดสร้างสรรค์, การตลาด";
+                    break;
+                case 2:
+                    career = "คุณเหมาะกับอาชีพ... Media Design and Production!";
+                    skills = "<strong>ทักษะที่ควรมี:</strong> การออกแบบกราฟิก, การตัดต่อวิดีโอ, การใช้โปรแกรมสร้างสรรค์";
+                    break;
+                case 3:
+                    career = "คุณเหมาะกับอาชีพ... Journalism and New Media!";
+                    skills = "<strong>ทักษะที่ควรมี:</strong> การเขียนข่าว, การเล่าเรื่อง, การคิดเชิงวิเคราะห์";
+                    break;
+                case 4:
+                    career = "คุณเหมาะกับอาชีพ... Speech Communication!";
+                    skills = "<strong>ทักษะที่ควรมี:</strong> การพูดต่อหน้าคน, การโน้มน้าว, การนำเสนอ";
+                    break;
+                case 5:
+                    career = "คุณเหมาะกับอาชีพ... Performing Arts!";
+                    skills = "<strong>ทักษะที่ควรมี:</strong> การแสดง, การเตรียมบท, การสื่อสารทางร่างกาย";
+                    break;
+                case 6:
+                    career = "คุณเหมาะกับอาชีพ... Film and Still Photography!";
+                    skills = "<strong>ทักษะที่ควรมี:</strong> การถ่ายภาพ, การตัดต่อ, การใช้เทคโนโลยีการถ่ายทำ";
+                    break;
+                case 7:
+                    career = "คุณเหมาะกับอาชีพ... Communication Management (International)!";
+                    skills = "<strong>ทักษะที่ควรมี:</strong> การบริหารโครงการ, การสื่อสารข้ามวัฒนธรรม, การจัดการธุรกิจ";
+                    break;
             }
 
             document.getElementById("career-result").innerText = career;
-            document.getElementById("result-image").src = "channels4_profile (1).jpg";
             document.getElementById("result-skills").innerHTML = skills;
             document.getElementById("question-page").style.display = "none";
             document.getElementById("result-page").style.display = "block";
@@ -357,10 +288,11 @@ document.getElementById('skills').innerHTML = skills;
 
         function restartTest() {
             currentQuestion = 0;
-            totalScore = 0;
+            totalScore = [0, 0, 0, 0, 0, 0, 0, 0];
             document.getElementById("result-page").style.display = "none";
             document.getElementById("intro-page").style.display = "block";
         }
     </script>
+
 </body>
 </html>
