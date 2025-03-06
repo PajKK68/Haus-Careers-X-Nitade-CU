@@ -10,7 +10,7 @@
         body {
             font-family: 'Sarabun', sans-serif;
             text-align: center;
-            background: linear-gradient(to bottom, #FF0000, #d3d3d3); /* เปลี่ยนสีพื้นหลัง */
+            background: linear-gradient(to bottom, #FF0000, #d3d3d3);
             color: #333;
             margin: 0;
             padding: 0;
@@ -30,7 +30,7 @@
             margin: 10px 0;
             font-size: 18px;
             border: none;
-            background: #800000; /* ปุ่มสีแดงเลือดหมู */
+            background: #800000;
             color: white;
             cursor: pointer;
             border-radius: 5px;
@@ -39,8 +39,8 @@
             background: #5b0000;
         }
         img {
-            max-width: 80%;  /* ปรับขนาดรูปให้พอดีกับหน้าจอ */
-            height: auto;    /* รักษาสัดส่วนของรูป */
+            max-width: 80%;
+            height: auto;
             border-radius: 10px;
             margin-bottom: 20px;
         }
@@ -55,29 +55,26 @@
             padding: 40px 20px;
         }
         .intro-container img {
-            max-width: 80%;  /* ปรับขนาดรูปในหน้าแรกให้พอดีกับหน้าจอ */
+            max-width: 80%;
             margin-bottom: 30px;
         }
     </style>
 </head>
 <body>
 
-    <!-- หน้าแรก -->
     <div class="intro-container" id="intro-page">
         <img src="นิเทศ-1024x538.png" alt="Career Image">
         <h1>ค้นหาอาชีพที่เหมาะกับเรา</h1>
         <button class="choice-btn" onclick="startTest()">เริ่มทดสอบกันเลย!</button>
     </div>
 
-    <!-- คำถาม -->
     <div class="container" id="question-page" style="display: none;">
         <img id="question-image" src="" alt="Question Image">
         <h1 id="question">Loading...</h1>
-        <div id="choices"></div> <!-- เปลี่ยนเป็น div สำหรับแสดงตัวเลือก -->
+        <div id="choices"></div>
         <div class="skills-box" id="skills"></div>
     </div>
 
-    <!-- ผลลัพธ์ -->
     <div class="container" id="result-page" style="display: none;">
         <img id="result-image" src="" alt="Result Image">
         <h1 id="career-result">Loading...</h1>
@@ -88,39 +85,73 @@
     <script>
         const questions = [
             { 
-                text: "คุณชอบทำงานกับข้อมูลและตัวเลขหรือไม่?", 
+                text: "คุณชอบทำงานแบบไหนมากที่สุด?", 
                 image: "นิเทศ-1024x538.png", 
-                choices: ["มาก", "กลางๆ", "ไม่เลย"],
-                results: [3, 2, 1]
+                choices: [
+                    "A) วางแผนกลยุทธ์และดูแลภาพลักษณ์องค์กร", 
+                    "B) คิดไอเดียสร้างสรรค์และออกแบบ", 
+                    "C) ชอบพูดคุย พิธีกร หรือแสดงออก", 
+                    "D) ค้นหาข้อมูล วิเคราะห์ และเล่าเรื่องจริง"
+                ],
+                results: [
+                    [4, 2, 1, 1, 2, 1, 1, 3], 
+                    [2, 4, 3, 1, 1, 1, 2, 2],
+                    [1, 1, 1, 2, 4, 3, 1, 1],
+                    [1, 1, 2, 4, 1, 2, 3, 1]
+                ]
             },
             { 
-                text: "คุณชอบการออกแบบและศิลปะหรือไม่?", 
+                text: "ถ้าให้เลือกเรียนคอร์สพิเศษสักคอร์สหนึ่ง คุณจะเลือกอะไร?", 
                 image: "นิเทศ-1024x538.png",
-                choices: ["มาก", "กลางๆ", "ไม่เลย"],
-                results: [3, 2, 1]
+                choices: [
+                    "A) กลยุทธ์การประชาสัมพันธ์และการสร้างภาพลักษณ์", 
+                    "B) การสร้างโฆษณาและการออกแบบสื่อดิจิทัล", 
+                    "C) ศิลปะการพูด พิธีกร หรือการแสดง", 
+                    "D) การเขียนข่าวสารและสื่อดิจิทัล"
+                ],
+                results: [
+                    [4, 2, 1, 1, 3, 1, 1, 3], 
+                    [1, 4, 3, 1, 1, 1, 2, 2],
+                    [1, 1, 1, 2, 4, 3, 1, 1],
+                    [1, 1, 2, 4, 1, 2, 3, 1]
+                ]
             },
             { 
-                text: "คุณสนใจเทคโนโลยีและการเขียนโปรแกรมหรือไม่?", 
+                text: "คุณถนัดด้านไหนมากที่สุด?", 
                 image: "นิเทศ-1024x538.png",
-                choices: ["มาก", "กลางๆ", "ไม่เลย"],
-                results: [3, 2, 1]
+                choices: [
+                    "A) วางแผน ติดต่อประสานงานกับคน", 
+                    "B) ใช้โปรแกรมออกแบบ วาดรูป ตัดต่อวิดีโอ", 
+                    "C) พูดต่อหน้าคนจำนวนมากหรือแสดงออกทางร่างกาย", 
+                    "D) เขียนข่าว บทความ หรือเล่าเรื่องจากมุมมองใหม่"
+                ],
+                results: [
+                    [4, 2, 1, 1, 3, 1, 1, 3], 
+                    [2, 4, 3, 1, 1, 1, 2, 2],
+                    [1, 1, 1, 2, 4, 3, 1, 1],
+                    [1, 1, 2, 4, 1, 2, 3, 1]
+                ]
             },
             { 
-                text: "คุณถนัดการสื่อสารและการพูดในที่สาธารณะหรือไม่?", 
+                text: "เวลาว่างคุณชอบทำอะไร?", 
                 image: "นิเทศ-1024x538.png",
-                choices: ["มาก", "กลางๆ", "ไม่เลย"],
-                results: [3, 2, 1]
-            },
-            { 
-                text: "คุณสนใจงานที่เกี่ยวกับการตลาดและการวิเคราะห์พฤติกรรมผู้บริโภคหรือไม่?", 
-                image: "นิเทศ-1024x538.png",
-                choices: ["มาก", "กลางๆ", "ไม่เลย"],
-                results: [3, 2, 1]
+                choices: [
+                    "A) อ่านข่าวสาร อัปเดตเทรนด์สังคมและธุรกิจ", 
+                    "B) ดูโฆษณา กราฟิก หรือออกแบบภาพเอง", 
+                    "C) ฝึกพูด พิธีกร หรือซ้อมแสดง", 
+                    "D) เขียนไดอารี่หรือรีวิวสิ่งต่าง ๆ"
+                ],
+                results: [
+                    [4, 2, 1, 3, 2, 1, 1, 3], 
+                    [1, 4, 3, 1, 1, 1, 2, 2],
+                    [1, 1, 1, 2, 4, 3, 1, 1],
+                    [1, 1, 2, 4, 1, 2, 3, 1]
+                ]
             }
         ];
 
         let currentQuestion = 0;
-        let totalScore = 0;  // คะแนนรวม
+        let totalScore = [0, 0, 0, 0, 0, 0, 0, 0];  // Scores for PR, ADV, MD, JNM, SPC, PA, FSP, CM
 
         function startTest() {
             document.getElementById("intro-page").style.display = "none";
@@ -129,7 +160,9 @@
         }
 
         function nextQuestion(choiceIndex) {
-            totalScore += questions[currentQuestion].results[choiceIndex];
+            for (let i = 0; i < totalScore.length; i++) {
+                totalScore[i] += questions[currentQuestion].results[choiceIndex][i];
+            }
 
             if (currentQuestion < questions.length - 1) {
                 currentQuestion++;
@@ -156,33 +189,67 @@
         }
 
         function showResult() {
+            const maxScoreIndex = totalScore.indexOf(Math.max(...totalScore));
+            let majorRecommendation = "";
             let career = "";
             let skills = "";
 
-            if (totalScore >= 12) {
-                career = "คุณเหมาะกับอาชีพ... Digital Marketer!";
-                skills = "<strong>ทักษะที่ควรมี:</strong> การวิเคราะห์ข้อมูล, การเขียนเนื้อหา, การใช้เครื่องมือโฆษณาออนไลน์";
-            } else if (totalScore >= 8) {
-                career = "คุณเหมาะกับอาชีพ... นักออกแบบกราฟิก!";
-                skills = "<strong>ทักษะที่ควรมี:</strong> การออกแบบ, การใช้โปรแกรมกราฟิก, ความคิดสร้างสรรค์";
-            } else {
-                career = "คุณเหมาะกับอาชีพ... นักพัฒนาโปรแกรม!";
-                skills = "<strong>ทักษะที่ควรมี:</strong> การเขียนโปรแกรม, การแก้ปัญหา, ความสามารถในการคิดเชิงตรรกะ";
+            switch (maxScoreIndex) {
+                case 0: 
+                    majorRecommendation = "คุณเหมาะกับสาขา... Public Relations";
+                    career = "อาชีพที่คุณสามารถทำได้: PR Specialist, Media Relations Manager, Event Coordinator";
+                    skills = "<strong>ทักษะที่ควรมี:</strong> การสื่อสาร, การบริหารโครงการ, ความคิดสร้างสรรค์";
+                    break;
+                case 1:
+                    majorRecommendation = "คุณเหมาะกับสาขา... Advertising and Brand Communications";
+                    career = "อาชีพที่คุณสามารถทำได้: Advertising Executive, Brand Manager, Marketing Specialist";
+                    skills = "<strong>ทักษะที่ควรมี:</strong> การออกแบบกราฟิก, การใช้โปรแกรมกราฟิก, ความคิดสร้างสรรค์";
+                    break;
+                case 2:
+                    majorRecommendation = "คุณเหมาะกับสาขา... Media Design and Production";
+                    career = "อาชีพที่คุณสามารถทำได้: Media Designer, Video Producer, Motion Graphics Designer";
+                    skills = "<strong>ทักษะที่ควรมี:</strong> การออกแบบ, การตัดต่อวิดีโอ, ความคิดสร้างสรรค์";
+                    break;
+                case 3:
+                    majorRecommendation = "คุณเหมาะกับสาขา... Journalism, Information, and New Media";
+                    career = "อาชีพที่คุณสามารถทำได้: Journalist, Content Writer, Digital Media Specialist";
+                    skills = "<strong>ทักษะที่ควรมี:</strong> การเขียน, การวิเคราะห์ข่าวสาร, การทำงานกับข้อมูล";
+                    break;
+                case 4:
+                    majorRecommendation = "คุณเหมาะกับสาขา... Speech Communication";
+                    career = "อาชีพที่คุณสามารถทำได้: Public Speaker, Communication Consultant, Corporate Trainer";
+                    skills = "<strong>ทักษะที่ควรมี:</strong> การพูด, การโน้มน้าว, การสื่อสารระหว่างบุคคล";
+                    break;
+                case 5:
+                    majorRecommendation = "คุณเหมาะกับสาขา... Performing Arts";
+                    career = "อาชีพที่คุณสามารถทำได้: Actor, Stage Director, Performing Arts Manager";
+                    skills = "<strong>ทักษะที่ควรมี:</strong> การแสดง, การสื่อสารผ่านการแสดง, ความคิดสร้างสรรค์";
+                    break;
+                case 6:
+                    majorRecommendation = "คุณเหมาะกับสาขา... Film and Still Photography";
+                    career = "อาชีพที่คุณสามารถทำได้: Photographer, Film Director, Cinematographer";
+                    skills = "<strong>ทักษะที่ควรมี:</strong> การถ่ายภาพ, การตัดต่อ, การเล่าเรื่องผ่านภาพ";
+                    break;
+                case 7:
+                    majorRecommendation = "คุณเหมาะกับสาขา... Communication Management";
+                    career = "อาชีพที่คุณสามารถทำได้: Communication Manager, PR Consultant, Brand Strategist";
+                    skills = "<strong>ทักษะที่ควรมี:</strong> การบริหารจัดการ, การสื่อสารระหว่างองค์กร, การพัฒนากลยุทธ์";
+                    break;
             }
 
-            document.getElementById("career-result").innerText = career;
-            document.getElementById("result-image").src = "channels4_profile (1).jpg";
-            document.getElementById("result-skills").innerHTML = skills;
             document.getElementById("question-page").style.display = "none";
             document.getElementById("result-page").style.display = "block";
+            document.getElementById("career-result").innerText = majorRecommendation;
+            document.getElementById("result-skills").innerHTML = career + "<br><br>" + skills;
         }
 
         function restartTest() {
             currentQuestion = 0;
-            totalScore = 0;
+            totalScore = [0, 0, 0, 0, 0, 0, 0, 0];
             document.getElementById("result-page").style.display = "none";
             document.getElementById("intro-page").style.display = "block";
         }
     </script>
+
 </body>
 </html>
