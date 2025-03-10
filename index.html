@@ -261,6 +261,8 @@
         }
 
         function showResult() {
+    document.getElementById("question-page").style.display = "none"; // ซ่อนหน้าคำถาม
+    document.getElementById("result-page").style.display = "block"; // แสดงหน้าผลลัพธ์
     const maxScoreIndex = totalScore.indexOf(Math.max(...totalScore));
     let majorRecommendation = "";
     let career = "";
@@ -348,10 +350,10 @@
     document.getElementById("result-skills").innerHTML = career + "<br><br>" + skills;
 }
 function restartTest() {
-    currentQuestion = 0;
-    totalScore = [0, 0, 0, 0, 0, 0, 0, 0];
-    document.getElementById("result-page").style.display = "none";
-    document.getElementById("intro-page").style.display = "block";
+    currentQuestion = 0; // รีเซ็ตคำถาม
+    totalScore = [0, 0, 0, 0, 0, 0, 0, 0]; // รีเซ็ตคะแนน
+    document.getElementById("result-page").style.display = "none"; // ซ่อนหน้าผลลัพธ์
+    document.getElementById("intro-page").style.display = "block"; // แสดงหน้าเริ่มต้น
 }
 
         
