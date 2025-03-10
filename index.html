@@ -75,12 +75,14 @@
         <div class="skills-box" id="skills"></div>
     </div>
 
-    <div class="container" id="result-page" style="display: none;">
-        <img id="result-image" src="" alt="Result Image">
-        <h1 id="career-result">Loading...</h1>
-        <div id="result-skills"></div>
-        <button class="choice-btn" onclick="restartTest()">เล่นอีกรอบ</button>
+    <div id="result-page" style="display: none;">
+    <img id="major-image" src="" alt="Major Image" style="display: none; width: 100%; max-width: 500px;">
+    <h2 id="career-result"></h2>
+    <hr id="divider" style="display: none; border: 1px solid black; margin: 20px 0;">
+    <img id="career-image" src="" alt="Career Image" style="display: none; width: 100%; max-width: 500px;">
+    <p id="result-skills"></p>
     </div>
+
 
     <script>
         const questions = [
@@ -252,66 +254,101 @@
         }
 
         function showResult() {
-            const maxScoreIndex = totalScore.indexOf(Math.max(...totalScore));
-            let majorRecommendation = "";
-            let career = "";
-            let skills = "";
+    const maxScoreIndex = totalScore.indexOf(Math.max(...totalScore));
+    let majorRecommendation = "";
+    let career = "";
+    let skills = "";
+    let majorImage = ""; // รูปด้านบนชื่อสาขา
+    let careerImage = ""; // รูปด้านบนอาชีพที่เกี่ยวข้อง
 
-            switch (maxScoreIndex) {
-                case 0: 
-                    majorRecommendation = "คุณเหมาะกับสาขา... Public Relations";
-                    career = "อาชีพที่คุณสามารถทำได้: PR Specialist, Media Relations Manager, Event Coordinator";
-                    skills = "<strong>ทักษะที่ควรมี:</strong> การสื่อสาร, การบริหารโครงการ, ความคิดสร้างสรรค์";
-                    break;
-                case 1:
-                    majorRecommendation = "คุณเหมาะกับสาขา... Advertising and Brand Communications";
-                    career = "อาชีพที่คุณสามารถทำได้: Advertising Executive, Brand Manager, Marketing Specialist";
-                    skills = "<strong>ทักษะที่ควรมี:</strong> การออกแบบกราฟิก, การใช้โปรแกรมกราฟิก, ความคิดสร้างสรรค์";
-                    break;
-                case 2:
-                    majorRecommendation = "คุณเหมาะกับสาขา... Media Design and Production";
-                    career = "อาชีพที่คุณสามารถทำได้: Media Designer, Video Producer, Motion Graphics Designer";
-                    skills = "<strong>ทักษะที่ควรมี:</strong> การออกแบบ, การตัดต่อวิดีโอ, ความคิดสร้างสรรค์";
-                    break;
-                case 3:
-                    majorRecommendation = "คุณเหมาะกับสาขา... Journalism, Information, and New Media";
-                    career = "อาชีพที่คุณสามารถทำได้: Journalist, Content Writer, Digital Media Specialist";
-                    skills = "<strong>ทักษะที่ควรมี:</strong> การเขียน, การวิเคราะห์ข่าวสาร, การทำงานกับข้อมูล";
-                    break;
-                case 4:
-                    majorRecommendation = "คุณเหมาะกับสาขา... Speech Communication";
-                    career = "อาชีพที่คุณสามารถทำได้: Public Speaker, Communication Consultant, Corporate Trainer";
-                    skills = "<strong>ทักษะที่ควรมี:</strong> การพูด, การโน้มน้าว, การสื่อสารระหว่างบุคคล";
-                    break;
-                case 5:
-                    majorRecommendation = "คุณเหมาะกับสาขา... Performing Arts";
-                    career = "อาชีพที่คุณสามารถทำได้: Actor, Stage Director, Performing Arts Manager";
-                    skills = "<strong>ทักษะที่ควรมี:</strong> การแสดง, การสื่อสารผ่านการแสดง, ความคิดสร้างสรรค์";
-                    break;
-                case 6:
-                    majorRecommendation = "คุณเหมาะกับสาขา... Film and Still Photography";
-                    career = "อาชีพที่คุณสามารถทำได้: Photographer, Film Director, Cinematographer";
-                    skills = "<strong>ทักษะที่ควรมี:</strong> การถ่ายภาพ, การตัดต่อ, การเล่าเรื่องผ่านภาพ";
-                    break;
-                case 7:
-                    majorRecommendation = "คุณเหมาะกับสาขา... Communication Management";
-                    career = "อาชีพที่คุณสามารถทำได้: Communication Manager, PR Consultant, Brand Strategist";
-                    skills = "<strong>ทักษะที่ควรมี:</strong> การบริหารจัดการ, การสื่อสารระหว่างองค์กร, การพัฒนากลยุทธ์";
-                    break;
-            }
+    switch (maxScoreIndex) {
+        case 0: 
+            majorRecommendation = "คุณเหมาะกับสาขา... Public Relations";
+            career = "อาชีพที่คุณสามารถทำได้: PR Specialist, Media Relations Manager, Event Coordinator";
+            skills = "<strong>ทักษะที่ควรมี:</strong> การสื่อสาร, การบริหารโครงการ, ความคิดสร้างสรรค์";
+            majorImage = "images/นิเทศ-1024x538.png";
+            careerImage = "images/นิเทศ-1024x538.png";
+            break;
+        case 1:
+            majorRecommendation = "คุณเหมาะกับสาขา... Advertising and Brand Communications";
+            career = "อาชีพที่คุณสามารถทำได้: Advertising Executive, Brand Manager, Marketing Specialist";
+            skills = "<strong>ทักษะที่ควรมี:</strong> การออกแบบกราฟิก, การใช้โปรแกรมกราฟิก, ความคิดสร้างสรรค์";
+            majorImage = "images/นิเทศ-1024x538.png";
+            careerImage = "images/นิเทศ-1024x538.png";
+            break;
+        case 2:
+            majorRecommendation = "คุณเหมาะกับสาขา... Media Design and Production";
+            career = "อาชีพที่คุณสามารถทำได้: Media Designer, Video Producer, Motion Graphics Designer";
+            skills = "<strong>ทักษะที่ควรมี:</strong> การออกแบบ, การตัดต่อวิดีโอ, ความคิดสร้างสรรค์";
+            majorImage = "images/นิเทศ-1024x538.png";
+            careerImage = "images/นิเทศ-1024x538.png";
+            break;
+        case 3:
+            majorRecommendation = "คุณเหมาะกับสาขา... Journalism, Information, and New Media";
+            career = "อาชีพที่คุณสามารถทำได้: Journalist, Content Writer, Digital Media Specialist";
+            skills = "<strong>ทักษะที่ควรมี:</strong> การเขียน, การวิเคราะห์ข่าวสาร, การทำงานกับข้อมูล";
+            majorImage = "images/นิเทศ-1024x538.png";
+            careerImage = "images/นิเทศ-1024x538.png";
+            break;
+        case 4:
+            majorRecommendation = "คุณเหมาะกับสาขา... Speech Communication";
+            career = "อาชีพที่คุณสามารถทำได้: Public Speaker, Communication Consultant, Corporate Trainer";
+            skills = "<strong>ทักษะที่ควรมี:</strong> การพูด, การโน้มน้าว, การสื่อสารระหว่างบุคคล";
+            majorImage = "images/นิเทศ-1024x538.png";
+            careerImage = "images/นิเทศ-1024x538.png";
+            break;
+        case 5:
+            majorRecommendation = "คุณเหมาะกับสาขา... Performing Arts";
+            career = "อาชีพที่คุณสามารถทำได้: Actor, Stage Director, Performing Arts Manager";
+            skills = "<strong>ทักษะที่ควรมี:</strong> การแสดง, การสื่อสารผ่านการแสดง, ความคิดสร้างสรรค์";
+            majorImage = "images/นิเทศ-1024x538.png";
+            careerImage = "images/นิเทศ-1024x538.png";
+            break;
+        case 6:
+            majorRecommendation = "คุณเหมาะกับสาขา... Film and Still Photography";
+            career = "อาชีพที่คุณสามารถทำได้: Photographer, Film Director, Cinematographer";
+            skills = "<strong>ทักษะที่ควรมี:</strong> การถ่ายภาพ, การตัดต่อ, การเล่าเรื่องผ่านภาพ";
+            majorImage = "images/นิเทศ-1024x538.png";
+            careerImage = "images/นิเทศ-1024x538.png";
+            break;
+        case 7:
+            majorRecommendation = "คุณเหมาะกับสาขา... Communication Management";
+            career = "อาชีพที่คุณสามารถทำได้: Communication Manager, PR Consultant, Brand Strategist";
+            skills = "<strong>ทักษะที่ควรมี:</strong> การบริหารจัดการ, การสื่อสารระหว่างองค์กร, การพัฒนากลยุทธ์";
+            majorImage = "images/นิเทศ-1024x538.png";
+            careerImage = "images/นิเทศ-1024x538.png";
+            break;
+    }
 
-            document.getElementById("question-page").style.display = "none";
-            document.getElementById("result-page").style.display = "block";
-            document.getElementById("career-result").innerText = majorRecommendation;
-            document.getElementById("result-skills").innerHTML = career + "<br><br>" + skills;
-        }
+    document.getElementById("question-page").style.display = "none";
+    document.getElementById("result-page").style.display = "block";
+    
+    // แสดงผลรูปภาพด้านบนของชื่อสาขา
+    document.getElementById("major-image").src = majorImage;
+    document.getElementById("major-image").style.display = "block";
 
-        function restartTest() {
-            currentQuestion = 0;
-            totalScore = [0, 0, 0, 0, 0, 0, 0, 0];
-            document.getElementById("result-page").style.display = "none";
-            document.getElementById("intro-page").style.display = "block";
-        }
+    // แสดงผลชื่อสาขา
+    document.getElementById("career-result").innerText = majorRecommendation;
+
+    // เส้นคั่นระหว่างชื่อสาขากับอาชีพ
+    document.getElementById("divider").style.display = "block";
+
+    // แสดงผลรูปภาพด้านบนของอาชีพ
+    document.getElementById("career-image").src = careerImage;
+    document.getElementById("career-image").style.display = "block";
+
+    // แสดงผลอาชีพและทักษะที่เกี่ยวข้อง
+    document.getElementById("result-skills").innerHTML = career + "<br><br>" + skills;
+}
+
+function restartTest() {
+    currentQuestion = 0;
+    totalScore = [0, 0, 0, 0, 0, 0, 0, 0];
+    document.getElementById("result-page").style.display = "none";
+    document.getElementById("intro-page").style.display = "block";
+}
+
+        
     </script>
 
 </body>
