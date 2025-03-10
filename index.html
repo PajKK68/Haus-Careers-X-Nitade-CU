@@ -87,10 +87,17 @@
         <img id="career-image" src="" alt="Career Image" style="display: none; width: 100%; max-width: 500px; border-radius: 10px;">
     </div>
     
-    <p id="result-skills" style="margin-top: 20px;">
-    <!-- เปลี่ยนข้อความบนปุ่มเป็น "เล่นอีกรอบ" -->
-    <button onclick="restartTest()" style="margin-top: 30px; padding: 10px 20px; background-color: #007BFF; color: white; border: none; border-radius: 5px; cursor: pointer;">เล่นอีกรอบ</button>
+    <p id="result-skills" style="margin-top: 20px;"></p>
+    
+    <!-- ปุ่มเล่นอีกรอบอยู่ในหน้า result เท่านั้น -->
+    <button id="restart-btn" onclick="restartTest()" style="margin-top: 30px; padding: 10px 20px; background-color: #007BFF; color: white; border: none; border-radius: 5px; cursor: pointer;">เล่นอีกรอบ</button>
 </div>
+
+<!-- หน้าแรก (intro page) จะไม่แสดงปุ่มนี้ -->
+<div id="intro-page" style="text-align: center;">
+    <button onclick="startTest()" style="padding: 10px 20px; background-color: #007BFF; color: white; border: none; border-radius: 5px;">เริ่มทดสอบ</button>
+</div>
+
 
 
 
