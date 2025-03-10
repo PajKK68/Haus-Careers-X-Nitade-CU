@@ -75,20 +75,21 @@
         <div class="skills-box" id="skills"></div>
     </div>
 
-   <div id="result-page" style="display: none; text-align: center; background-color: white; padding: 20px; border-radius: 10px; max-width: 600px; margin: auto; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);">
-    <div style="text-align: center;">
+   <div id="result-page" style="display: none; text-align: center; background-color: white; padding: 20px; border-radius: 10px; max-width: 600px; margin: auto; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); display: flex; flex-direction: column; align-items: center; justify-content: center;">
+    <div style="width: 100%; display: flex; justify-content: center;">
         <img id="major-image" src="" alt="Major Image" style="display: none; width: 100%; max-width: 500px; border-radius: 10px;">
     </div>
     <h2 id="career-result" style="margin-top: 20px;"></h2>
     
     <hr id="divider" style="display: none; border: 1px solid black; margin: 20px 0;">
     
-    <div style="text-align: center;">
+    <div style="width: 100%; display: flex; justify-content: center;">
         <img id="career-image" src="" alt="Career Image" style="display: none; width: 100%; max-width: 500px; border-radius: 10px;">
     </div>
     
     <p id="result-skills" style="margin-top: 20px;"></p>
 </div>
+
 
 
 
@@ -348,7 +349,6 @@
     // แสดงผลอาชีพและทักษะที่เกี่ยวข้อง
     document.getElementById("result-skills").innerHTML = career + "<br><br>" + skills;
 }
-
 function restartTest() {
     currentQuestion = 0;
     totalScore = [0, 0, 0, 0, 0, 0, 0, 0];
