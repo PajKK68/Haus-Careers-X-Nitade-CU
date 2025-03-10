@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -62,7 +63,6 @@
 </head>
 <body>
 
-    
     <div class="intro-container" id="intro-page">
         <img src="นิเทศ-1024x538.png" alt="Career Image">
         <h1>ค้นหาอาชีพที่เหมาะกับเรา</h1>
@@ -86,6 +86,10 @@
     
     <div style="width: 100%; display: flex; justify-content: center;">
         <img id="career-image" src="" alt="Career Image" style="display: none; width: 100%; max-width: 500px; border-radius: 10px;">
+    </div>
+    
+    <p id="result-skills" style="margin-top: 20px;"></p>
+           <button class="choice-btn" onclick="restartTest()">เล่นอีกรอบ</button>
     </div>
 
     <script>
@@ -258,6 +262,8 @@
         }
 
         function showResult() {
+    document.getElementById("question-page").style.display = "none"; // ซ่อนหน้าคำถาม
+    document.getElementById("result-page").style.display = "block"; // แสดงหน้าผลลัพธ์
     const maxScoreIndex = totalScore.indexOf(Math.max(...totalScore));
     let majorRecommendation = "";
     let career = "";
@@ -355,4 +361,4 @@ function restartTest() {
     </script>
 
 </body>
-</html>
+</html> 
