@@ -85,9 +85,6 @@
     
     <div style="width: 100%; display: flex; justify-content: center;">
         <img id="career-image" src="" alt="Career Image" style="display: none; width: 100%; max-width: 500px; border-radius: 10px;">
-    </div>
-    
-    <p id="result-skills" style="margin-top: 20px;"></p>
            <button class="choice-btn" onclick="restartTest()">เล่นอีกรอบ</button>
     </div>
 
@@ -261,9 +258,6 @@
         }
 
         function showResult() {
-    document.getElementById("question-page").style.display = "none"; // ซ่อนหน้าคำถาม
-    document.getElementById("result-page").style.display = "block"; // แสดงหน้าผลลัพธ์
-    document.getElementById("restart-btn").style.display = "inline-block";
     const maxScoreIndex = totalScore.indexOf(Math.max(...totalScore));
     let majorRecommendation = "";
     let career = "";
